@@ -6,9 +6,9 @@
 <title>For My Love 💖</title>
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Times New Roman',serif}
 
-body {
+body{
   height:100vh;
   overflow:hidden;
   display:flex;
@@ -20,17 +20,13 @@ body {
 
 /* stars */
 .stars,.stars2,.stars3{position:fixed;width:100%;height:100%}
-.stars::after,.stars2::after,.stars3::after{content:"";position:absolute;background:white;border-radius:50%}
-.stars::after{width:2px;height:2px;box-shadow:10vw 20vh #fff,30vw 40vh #fff,50vw 10vh #fff,70vw 80vh #fff,90vw 30vh #fff}
-.stars2::after{width:1.5px;height:1.5px;box-shadow:15vw 25vh #c9c9ff,35vw 65vh #c9c9ff,55vw 15vh #c9c9ff}
-.stars3::after{width:1px;height:1px;box-shadow:5vw 15vh #a78bfa,25vw 35vh #a78bfa,65vw 75vh #a78bfa}
-
-@keyframes moveStars{
-  from{transform:translateY(0)}
-  to{transform:translateY(-200vh)}
+.stars::after,.stars2::after,.stars3::after{
+  content:"";position:absolute;background:white;border-radius:50%;
 }
+.stars::after{width:2px;height:2px;box-shadow:10vw 20vh #fff,30vw 40vh #fff,50vw 10vh #fff}
+.stars2::after{width:1.5px;height:1.5px;box-shadow:15vw 25vh #c9c9ff,55vw 15vh #c9c9ff}
+.stars3::after{width:1px;height:1px;box-shadow:5vw 15vh #a78bfa,65vw 75vh #a78bfa}
 
-/* slide */
 .slide{
   position:absolute;
   width:90%;
@@ -38,50 +34,42 @@ body {
   padding:30px;
   opacity:0;
   transition:1s;
-  z-index:2;
 }
 .slide.active{opacity:1}
 
-.text{
-  font-size:18px;
-  line-height:1.9;
-  text-align:justify;
-  white-space:pre-wrap;
-}
-
+.text{font-size:18px;line-height:1.9;white-space:pre-wrap}
 .opening{font-size:28px;text-align:center}
-.ending{text-align:center;font-size:22px}
+.ending{text-align:center;font-size:20px}
 
-/* cursor typing */
 .cursor::after{
   content:"|";
-  animation:blink 0.8s infinite;
+  animation:blink .7s infinite;
 }
-@keyframes blink{
-  50%{opacity:0}
-}
+@keyframes blink{50%{opacity:0}}
 </style>
 </head>
 
-<body onclick="nextSlide()">
+<body>
 
 <div class="stars"></div>
 <div class="stars2"></div>
 <div class="stars3"></div>
 
-<!-- SLIDES -->
-<div class="slide active"><div class="opening">tap anywhere sayang 🤍</div></div>
+<!-- SLIDE 1 -->
+<div class="slide active">
+  <div class="opening">happy birthday sayang 🤍</div>
+</div>
 
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
-<div class="slide"><div class="text"></div></div>
+<!-- SLIDE 2 -->
 <div class="slide"><div class="text"></div></div>
 
+<!-- SLIDE 3 -->
+<div class="slide"><div class="text"></div></div>
+
+<!-- SLIDE 4 -->
+<div class="slide"><div class="text"></div></div>
+
+<!-- SLIDE 5 -->
 <div class="slide"><div class="ending"></div></div>
 
 <audio id="music" loop>
@@ -91,82 +79,81 @@ body {
 <script>
 const texts = [
 
-`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.`,
+`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.
 
-`jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
+jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
 
-`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3`,
+`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3
 
-`buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
+buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
 
-`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3`,
+`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3
 
-`and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤`,
+and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤
 
-`kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
+kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
 
-`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏`,
+`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
 
-`i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3`
+i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3
+
+once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍`
 ];
 
 const finalText = `
-once again, happy birthday sayang 🤍
-i’m so proud of you for everything you’ve done,
-and i’ll always support you, no matter what 💖
+Thanks for watching sayang 💖
 
-Thanks for watching sayang 😤
 I’m always here to support u no matter what cz I’m ur biggest fan !!!!
 
 happy birthday yaa sayang 🤍
 `;
 
-let slides = document.querySelectorAll(".slide");
-let index = 0;
-let musicStarted = false;
+let slides=document.querySelectorAll(".slide");
+let i=0;
+let musicPlayed=false;
 
-function typeText(el, text, speed=20, cb){
-  let i = 0;
+function type(el,text,speed=18){
+  let x=0;
+  el.innerHTML="";
   el.classList.add("cursor");
-  el.innerHTML = "";
 
-  function typing(){
-    if(i < text.length){
-      el.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
+  function run(){
+    if(x<text.length){
+      el.innerHTML+=text[x++];
+      setTimeout(run,speed);
     } else {
       el.classList.remove("cursor");
-      if(cb) cb();
     }
   }
-  typing();
+  run();
 }
 
-function showSlide(i){
-  slides.forEach(s => s.classList.remove("active"));
-  slides[i].classList.add("active");
+function show(n){
+  slides.forEach(s=>s.classList.remove("active"));
+  slides[n].classList.add("active");
 
-  if(i > 0 && i <= texts.length){
-    typeText(slides[i].querySelector(".text"), texts[i-1]);
+  if(n>0 && n<slides.length-1){
+    type(slides[n].querySelector(".text"),texts[n-1]);
   }
 
-  if(i === slides.length-1){
-    typeText(slides[i].querySelector(".ending"), finalText);
+  if(n===slides.length-1){
+    type(slides[n].querySelector(".ending"),finalText);
   }
 
-  if(!musicStarted){
+  if(!musicPlayed){
     document.getElementById("music").play();
-    musicStarted = true;
+    musicPlayed=true;
   }
 }
 
-function nextSlide(){
-  if(index < slides.length-1){
-    index++;
-    showSlide(index);
+function next(){
+  if(i<slides.length-1){
+    i++;
+    show(i);
   }
 }
+
+setInterval(next,9000);
 </script>
 
 </body>
