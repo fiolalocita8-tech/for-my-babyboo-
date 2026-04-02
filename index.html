@@ -91,6 +91,18 @@ body{
 @keyframes blink{
   50%{opacity:0;}
 }
+
+/* ===== Tambahan buat foto ===== */
+.photo-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.photo-container img {
+  max-width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
 </style>
 </head>
 
@@ -102,4 +114,131 @@ body{
 
 <!-- SLIDE 1 -->
 <div class="slide active">
-  <
+  <div class="opening">happy birthday sayang 🤍</div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide"><div class="text"></div></div>
+
+<!-- SLIDE 3 -->
+<div class="slide"><div class="text"></div></div>
+
+<!-- SLIDE 4 -->
+<div class="slide"><div class="text"></div></div>
+
+<!-- SLIDE 5 -->
+<div class="slide">
+  <div class="ending"></div>
+  <div class="photo-container">
+    <img src="foto-ku.jpg" alt="Foto Aku" />
+  </div>
+</div>
+
+<audio id="music" loop preload="auto" playsinline>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const texts = [
+`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.
+
+jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
+
+`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3
+
+buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
+
+`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3
+
+and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤
+
+kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
+
+`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
+
+i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3
+
+once again, happy birthday sayang. i’m so proud of you for everything you’ve done`
+];
+
+const finalText = `
+hey im always here stand by ur side bro,
+i wont go anywhere l
+cz im ur biggest fann!!!!
+`;
+
+let slides = document.querySelectorAll(".slide");
+let i = 0;
+let musicPlayed = false;
+const music = document.getElementById("music");
+
+function type(el, text, speed = 18) {
+  let x = 0;
+  el.innerHTML = "";
+  el.classList.add("cursor");
+
+  function run() {
+    if (x < text.length) {
+      el.innerHTML += text[x++];
+      setTimeout(run, speed);
+    } else {
+      el.classList.remove("cursor");
+    }
+  }
+  run();
+}
+
+function show(n) {
+  slides.forEach(s => s.classList.remove("active"));
+  slides[n].classList.add("active");
+
+  if (n > 0 && n < slides.length - 1) {
+    type(slides[n].querySelector(".text"), texts[n - 1]);
+  }
+
+  if (n === slides.length - 1) {
+    type(slides[n].querySelector(".ending"), finalText);
+  }
+}
+
+// 🎶 Safari-safe play + fade in
+function startMusic() {
+  music.muted = true;
+
+  music.play().then(() => {
+    music.muted = false;
+    music.volume = 0;
+
+    let vol = 0;
+    const fade = setInterval(() => {
+      if (vol < 0.5) {
+        vol += 0.02;
+        music.volume = vol;
+      } else {
+        clearInterval(fade);
+      }
+    }, 200);
+
+  }).catch(err => console.log(err));
+}
+
+// klik untuk next slide dan start musik
+document.body.addEventListener("click", () => {
+
+  if (!musicPlayed) {
+    startMusic();
+    musicPlayed = true;
+  }
+
+  if (i < slides.length - 1) {
+    i++;
+    show(i);
+  }
+});
+
+// start pertama
+show(0);
+</script>
+
+</body>
+</html>
