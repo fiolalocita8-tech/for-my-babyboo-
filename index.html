@@ -21,7 +21,6 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  text-align: center;
 }
 
 /* GALAXY */
@@ -30,116 +29,105 @@ body {
   width: 100%;
   height: 100%;
   background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-/* TEXT FULL */
-.box {
+/* SLIDE */
+.slide {
+  position: absolute;
   width: 100%;
   padding: 30px;
-  z-index: 2;
-}
-
-#text {
-  font-size: 18px;
-  line-height: 1.8;
-  max-width: 600px;
-  margin: auto;
-}
-
-.fade {
+  max-width: 650px;
   opacity: 0;
-  animation: fadeIn 1s forwards;
+  transition: 1s;
 }
 
-@keyframes fadeIn {
-  to {opacity: 1;}
-}
-
-.tap {
-  opacity: 0.6;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-/* FOTO DI SLIDE 3 */
-.fotoSlide {
-  margin-top: 20px;
-}
-
-.fotoSlide img {
-  width: 130px;
-  border-radius: 12px;
-}
-
-/* FOTO AKHIR */
-.fotokamu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: 2s;
-}
-
-.fotokamu.show {
+.slide.active {
   opacity: 1;
 }
 
-.fotokamu img {
-  width: 150px;
-  border-radius: 15px;
-  margin-bottom: 20px;
+/* TEXT */
+.text {
+  font-size: 18px;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+/* FOTO SLIDE 3 */
+.fotoSlide {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.fotoSlide img {
+  width: 140px;
+  border-radius: 12px;
 }
 
 /* ENDING */
 .ending {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: 2s;
-}
-
-.ending.show {
-  opacity: 1;
+  text-align: center;
+  font-size: 24px;
 }
 </style>
 </head>
 
-<body onclick="nextText()">
+<body onclick="nextSlide()">
 
 <div class="stars"></div>
 
-<div class="box">
-  <div id="text">tap pelan yaa 🤍</div>
-  <div class="tap">tap anywhere...</div>
+<!-- SLIDE 1 -->
+<div class="slide active">
+  <div class="text">
+    happy birthday yaa sayang 🤍<br><br>
+
+    ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.<br><br>
+
+    jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝
+  </div>
 </div>
 
-<!-- FOTO AKHIR -->
-<div class="fotokamu" id="fotokamu">
-  <img src="IMG_9402.png">
-  <p>jangan lupain aku ya sayang 🤍</p>
+<!-- SLIDE 2 -->
+<div class="slide">
+  <div class="text">
+    i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud &lt;3<br><br>
+
+    buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee<br><br>
+
+    and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat &lt;3
+  </div>
+</div>
+
+<!-- SLIDE 3 (ADA FOTO) -->
+<div class="slide">
+  <div class="text">
+    and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤<br><br>
+
+    kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should<br><br>
+
+    thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
+    
+    <div class="fotoSlide">
+      <img src="kamu.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide">
+  <div class="text">
+    i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me &lt;3<br><br>
+
+    once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍
+  </div>
 </div>
 
 <!-- ENDING -->
-<div class="ending" id="ending">
-  <h1>
+<div class="slide">
+  <div class="ending">
     i am so proud of you sayang 🫶🏻<br><br>
     thank you for staying… even when things weren’t easy 🤍
-  </h1>
+  </div>
 </div>
 
 <audio id="music" loop>
@@ -147,64 +135,22 @@ body {
 </audio>
 
 <script>
-let texts = [
-`happy birthday yaa sayang 🤍`,
-
-`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.`,
-
-`jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
-
-`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3`,
-
-`buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
-
-`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3`,
-
-`and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤`,
-
-`kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
-
-`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏`,
-
-`i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3`,
-
-`once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍`
-];
-
-let i = 0;
+let slides = document.querySelectorAll(".slide");
+let index = 0;
 let musicStarted = false;
 
-function nextText() {
+function nextSlide() {
 
   if (!musicStarted) {
     document.getElementById("music").play();
     musicStarted = true;
   }
 
-  if (i === 0) document.getElementById("text").innerHTML = "";
+  slides[index].classList.remove("active");
+  index++;
 
-  if (i < texts.length) {
-
-    let p = document.createElement("p");
-    p.classList.add("fade");
-    p.innerText = texts[i];
-    document.getElementById("text").appendChild(p);
-
-    // FOTO MUNCUL DI SLIDE KE-3
-    if (i === 2) {
-      let img = document.createElement("div");
-      img.className = "fotoSlide";
-      img.innerHTML = `<img src="kamu.jpg">`;
-      document.getElementById("text").appendChild(img);
-    }
-
-    i++;
-  } else {
-    document.getElementById("fotokamu").classList.add("show");
-
-    setTimeout(() => {
-      document.getElementById("ending").classList.add("show");
-    }, 5000);
+  if (index < slides.length) {
+    slides[index].classList.add("active");
   }
 }
 </script>
