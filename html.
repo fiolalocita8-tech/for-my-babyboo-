@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for babyboo 🤍</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Segoe UI',sans-serif;
+  background: radial-gradient(circle at top, #140028, #000);
+  color:white;
+  overflow:hidden;
+}
+
+/* 🌌 stars */
+.stars, .stars2{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:transparent;
+}
+
+.stars::after{
+  content:"";
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  box-shadow:
+  50px 80px,120px 200px,300px 150px,500px 300px,700px 100px,900px 400px;
+  animation: twinkle 2s infinite alternate;
+}
+
+.stars2::after{
+  content:"";
+  position:absolute;
+  width:1px;
+  height:1px;
+  background:#ccc;
+  box-shadow:
+  200px 100px,400px 250px,600px 350px,800px 150px;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
+
+/* shooting star */
+.shoot{
+  position:absolute;
+  width:2px;
+  height:80px;
+  background:linear-gradient(white,transparent);
+  top:-100px;
+  left:70%;
+  animation:shoot 5s infinite;
+}
+
+@keyframes shoot{
+  0%{transform:translateY(0) translateX(0); opacity:1;}
+  100%{transform:translateY(800px) translateX(-300px); opacity:0;}
+}
+
+/* slide */
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  opacity:0;
+  pointer-events:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+  transition:1s;
+  backdrop-filter: blur(4px);
+}
+
+.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+/* text */
+h1{
+  font-size:2.7em;
+  background: linear-gradient(45deg,#ff99ff,#66ccff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 25px rgba(255,255,255,0.3);
+}
+
+p{
+  max-width:650px;
+  margin-top:10px;
+  line-height:1.6;
+}
+
+/* button */
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  border-radius:20px;
+  border:none;
+  background: linear-gradient(45deg,#ff66cc,#66ccff);
+  color:black;
+  cursor:pointer;
+}
+
+/* image */
+img{
+  width:150px;
+  border-radius:20px;
+  margin-bottom:15px;
+  box-shadow:0 0 30px rgba(255,255,255,0.4);
+}
+
+/* fade text */
+.fadeText{
+  opacity:0;
+  transform:translateY(15px);
+  transition:0.8s;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 💖 floating hearts */
+.heart{
+  position:absolute;
+  color:pink;
+  font-size:20px;
+  animation:float 3s linear forwards;
+}
+
+@keyframes float{
+  to{
+    transform:translateY(-200px);
+    opacity:0;
+  }
+}
+
+/* popup */
+.popup{
+  position:fixed;
+  bottom:30px;
+  background:rgba(255,255,255,0.1);
+  padding:10px 20px;
+  border-radius:20px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="shoot"></div>
+
+<!-- slide 1 -->
+<div class="slide active" id="s1">
+  <img src="foto1.jpg">
+  <h1>happy birthday babyboo ✨</h1>
+  <p>for Farhan Abud, someone special in this universe 🌌</p>
+  <button onclick="go(2)">tap yaa</button>
+</div>
+
+<!-- slide 2 -->
+<div class="slide" id="s2">
+  <img src="foto2.jpg">
+  <h1>for you 💌</h1>
+
+  <audio id="music">
+    <source src="lagu.mp3">
+  </audio>
+
+  <button onclick="playMusic()">play dulu 🎵</button>
+
+  <div id="textContainer"></div>
+
+  <button onclick="showNext()">buka pesan</button>
+  <button onclick="go(3)">lanjut</button>
+</div>
+
+<!-- slide 3 -->
+<div class="slide" id="s3">
+  <h1>thank you sayang 💖</h1>
+  <p>makasih udah jadi bagian dari semesta aku 🤍</p>
+  <h2 style="margin-top:20px;">mwah 😘</h2>
+</div>
+
+<div class="popup" id="popup">cie abud ditap 😏</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+}
+
+function playMusic(){
+  document.getElementById('music').play();
+}
+
+/* 💌 long text kamu */
+let paragraphs = [
+`happy birthday yaa sayang 🤍`,
+`ih today is your special day yaa 😖 bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you.`,
+`jujur ya… kamu emang se-“itu”`,
+`please take care of yourself ya… aku peduli 🤍`,
+`dan jangan bandel ya 😤`
+];
+
+let index=0;
+
+function showNext(){
+  if(index < paragraphs.length){
+    let p=document.createElement("p");
+    p.classList.add("fadeText");
+    p.innerText=paragraphs[index];
+    document.getElementById("textContainer").appendChild(p);
+
+    setTimeout(()=>p.classList.add("show"),50);
+    index++;
+  }
+}
+
+/* 💖 heart effect */
+document.addEventListener("click", function(e){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💖";
+  heart.style.left=e.clientX+"px";
+  heart.style.top=e.clientY+"px";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),3000);
+});
+
+/* popup */
+document.body.addEventListener("click", ()=>{
+  let p=document.getElementById("popup");
+  p.style.display="block";
+  setTimeout(()=>p.style.display="none",2000);
+},{once:true});
+</script>
+
+</body>
+</html>
