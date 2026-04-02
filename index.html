@@ -24,22 +24,16 @@ body {
   text-align: center;
 }
 
-/* STAR */
-.star {
+/* GALAXY */
+.stars {
   position: fixed;
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(white, transparent);
-  animation: fall linear infinite;
-  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  opacity: 0.6;
 }
 
-@keyframes fall {
-  from {transform: translateY(-100px);}
-  to {transform: translateY(100vh) translateX(200px);}
-}
-
-/* FULL TEXT */
+/* TEXT FULL */
 .box {
   width: 100%;
   padding: 30px;
@@ -68,7 +62,17 @@ body {
   margin-top: 10px;
 }
 
-/* FOTO */
+/* FOTO DI SLIDE 3 */
+.fotoSlide {
+  margin-top: 20px;
+}
+
+.fotoSlide img {
+  width: 130px;
+  border-radius: 12px;
+}
+
+/* FOTO AKHIR */
 .fotokamu {
   position: fixed;
   top: 0;
@@ -94,10 +98,6 @@ body {
   margin-bottom: 20px;
 }
 
-.fotokamu p {
-  font-size: 18px;
-}
-
 /* ENDING */
 .ending {
   position: fixed;
@@ -121,14 +121,16 @@ body {
 
 <body onclick="nextText()">
 
+<div class="stars"></div>
+
 <div class="box">
   <div id="text">tap pelan yaa 🤍</div>
   <div class="tap">tap anywhere...</div>
 </div>
 
-<!-- FOTO -->
+<!-- FOTO AKHIR -->
 <div class="fotokamu" id="fotokamu">
-  <img src="IMG_9402.png">
+  <img src="kamu.jpg">
   <p>jangan lupain aku ya sayang 🤍</p>
 </div>
 
@@ -140,7 +142,6 @@ body {
   </h1>
 </div>
 
-<!-- AUDIO -->
 <audio id="music" loop>
   <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3" type="audio/mpeg">
 </audio>
@@ -175,7 +176,6 @@ let musicStarted = false;
 
 function nextText() {
 
-  // AUTO PLAY PAS TAP PERTAMA
   if (!musicStarted) {
     document.getElementById("music").play();
     musicStarted = true;
@@ -184,10 +184,20 @@ function nextText() {
   if (i === 0) document.getElementById("text").innerHTML = "";
 
   if (i < texts.length) {
+
     let p = document.createElement("p");
     p.classList.add("fade");
     p.innerText = texts[i];
     document.getElementById("text").appendChild(p);
+
+    // FOTO MUNCUL DI SLIDE KE-3
+    if (i === 2) {
+      let img = document.createElement("div");
+      img.className = "fotoSlide";
+      img.innerHTML = `<img src="kamu.jpg">`;
+      document.getElementById("text").appendChild(img);
+    }
+
     i++;
   } else {
     document.getElementById("fotokamu").classList.add("show");
@@ -197,16 +207,6 @@ function nextText() {
     }, 5000);
   }
 }
-
-/* STAR */
-setInterval(() => {
-  let star = document.createElement("div");
-  star.className = "star";
-  star.style.left = Math.random() * 100 + "vw";
-  star.style.animationDuration = (Math.random() * 2 + 1) + "s";
-  document.body.appendChild(star);
-  setTimeout(() => star.remove(), 2000);
-}, 100);
 </script>
 
 </body>
