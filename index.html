@@ -15,7 +15,8 @@
 
 body {
   height: 100vh;
-  background: black;
+  background: url("galaxy.jpg") no-repeat center center;
+  background-size: cover;
   color: white;
   display: flex;
   justify-content: center;
@@ -23,37 +24,44 @@ body {
   overflow: hidden;
 }
 
-/* GALAXY */
-.stars {
+/* overlay biar kebaca */
+body::after {
+  content: "";
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity: 0.5;
+  background: rgba(0,0,20,0.4);
 }
 
-/* SLIDE */
+/* slide */
 .slide {
   position: absolute;
   width: 100%;
-  padding: 30px;
   max-width: 650px;
+  padding: 30px;
   opacity: 0;
   transition: 1s;
+  z-index: 2;
 }
 
 .slide.active {
   opacity: 1;
 }
 
-/* TEXT */
+/* text */
 .text {
   font-size: 18px;
   line-height: 1.9;
   text-align: justify;
 }
 
-/* FOTO SLIDE 3 */
+/* opening */
+.opening {
+  font-size: 28px;
+  text-align: center;
+}
+
+/* foto */
 .fotoSlide {
   margin-top: 25px;
   text-align: center;
@@ -64,7 +72,7 @@ body {
   border-radius: 12px;
 }
 
-/* ENDING */
+/* ending */
 .ending {
   text-align: center;
   font-size: 24px;
@@ -74,38 +82,28 @@ body {
 
 <body onclick="nextSlide()">
 
-<div class="stars"></div>
-
 <!-- SLIDE 1 -->
 <div class="slide active">
-  <div class="text">
-    happy birthday yaa sayang 🤍<br><br>
-
-    ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.<br><br>
-
-    jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝
+  <div class="opening">
+    happy birthday sayang 🤍
   </div>
 </div>
 
 <!-- SLIDE 2 -->
 <div class="slide">
   <div class="text">
-    i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud &lt;3<br><br>
+    ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.<br><br>
 
-    buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee<br><br>
-
-    and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat &lt;3
+    jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝
   </div>
 </div>
 
-<!-- SLIDE 3 (ADA FOTO) -->
+<!-- SLIDE 3 -->
 <div class="slide">
   <div class="text">
-    and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤<br><br>
+    i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud &lt;3<br><br>
 
-    kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should<br><br>
-
-    thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
+    buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee
     
     <div class="fotoSlide">
       <img src="IMG_9402.png">
@@ -114,6 +112,24 @@ body {
 </div>
 
 <!-- SLIDE 4 -->
+<div class="slide">
+  <div class="text">
+    and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat &lt;3<br><br>
+
+    and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤
+  </div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide">
+  <div class="text">
+    kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should<br><br>
+
+    thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
+  </div>
+</div>
+
+<!-- SLIDE 6 -->
 <div class="slide">
   <div class="text">
     i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me &lt;3<br><br>
@@ -130,6 +146,7 @@ body {
   </div>
 </div>
 
+<!-- AUDIO -->
 <audio id="music" loop>
   <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3" type="audio/mpeg">
 </audio>
@@ -141,16 +158,18 @@ let musicStarted = false;
 
 function nextSlide() {
 
-  if (!musicStarted) {
-    document.getElementById("music").play();
-    musicStarted = true;
-  }
-
-  slides[index].classList.remove("active");
   index++;
 
   if (index < slides.length) {
+
+    slides.forEach(s => s.classList.remove("active"));
     slides[index].classList.add("active");
+
+    // mulai musik di slide 2
+    if (index === 1 && !musicStarted) {
+      document.getElementById("music").play();
+      musicStarted = true;
+    }
   }
 }
 </script>
