@@ -13,82 +13,76 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+/* 🌌 PURPLE NEBULA BACKGROUND */
 body {
   height: 100vh;
-  background: radial-gradient(circle at 20% 30%, #0a0a1a, #000);
-  color: white;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  color: white;
+
+  background: radial-gradient(circle at 20% 30%, #2b0a4f, #05010f, #000);
 }
 
-/* 🌌 GALAXY STARS */
+/* ⭐ STAR LAYERS */
 .stars, .stars2, .stars3 {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: transparent;
+}
+
+.stars::after,
+.stars2::after,
+.stars3::after {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 50%;
 }
 
 /* layer 1 */
 .stars::after {
-  content: "";
-  position: absolute;
   width: 2px;
   height: 2px;
-  background: white;
   box-shadow:
-    10vw 20vh white, 30vw 40vh white, 50vw 10vh white,
-    70vw 80vh white, 90vw 30vh white, 20vw 70vh white,
-    40vw 90vh white, 60vw 50vh white, 80vw 60vh white;
+    10vw 20vh #fff, 30vw 40vh #fff, 50vw 10vh #fff,
+    70vw 80vh #fff, 90vw 30vh #fff, 20vw 70vh #fff;
   animation: moveStars 60s linear infinite;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* layer 2 */
 .stars2::after {
-  content: "";
-  position: absolute;
   width: 1.5px;
   height: 1.5px;
-  background: #aaa;
   box-shadow:
-    15vw 25vh #aaa, 35vw 65vh #aaa, 55vw 15vh #aaa,
-    75vw 85vh #aaa, 95vw 45vh #aaa, 25vw 75vh #aaa,
-    45vw 95vh #aaa, 65vw 55vh #aaa;
-  animation: moveStars 100s linear infinite;
+    15vw 25vh #c9c9ff, 35vw 65vh #c9c9ff, 55vw 15vh #c9c9ff,
+    75vw 85vh #c9c9ff, 25vw 75vh #c9c9ff;
+  animation: moveStars 90s linear infinite;
   opacity: 0.5;
 }
 
 /* layer 3 */
 .stars3::after {
-  content: "";
-  position: absolute;
   width: 1px;
   height: 1px;
-  background: #777;
   box-shadow:
-    5vw 15vh #777, 25vw 35vh #777, 45vw 5vh #777,
-    65vw 75vh #777, 85vw 25vh #777, 15vw 65vh #777;
-  animation: moveStars 140s linear infinite;
+    5vw 15vh #a78bfa, 25vw 35vh #a78bfa,
+    65vw 75vh #a78bfa, 85vw 25vh #a78bfa;
+  animation: moveStars 120s linear infinite;
   opacity: 0.4;
 }
 
-/* animasi gerak pelan */
 @keyframes moveStars {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-200vh);
-  }
+  from { transform: translateY(0); }
+  to { transform: translateY(-200vh); }
 }
 
-/* slide */
+/* 📄 SLIDES */
 .slide {
   position: absolute;
-  width: 100%;
+  width: 90%;
   max-width: 650px;
   padding: 30px;
   opacity: 0;
@@ -100,20 +94,19 @@ body {
   opacity: 1;
 }
 
-/* text */
+/* TEXT */
 .text {
   font-size: 18px;
   line-height: 1.9;
   text-align: justify;
 }
 
-/* opening */
 .opening {
   font-size: 28px;
   text-align: center;
 }
 
-/* foto */
+/* FOTO */
 .fotoSlide {
   margin-top: 25px;
   text-align: center;
@@ -124,7 +117,7 @@ body {
   border-radius: 12px;
 }
 
-/* ending */
+/* END */
 .ending {
   text-align: center;
   font-size: 24px;
@@ -149,9 +142,9 @@ body {
 <!-- SLIDE 2 -->
 <div class="slide">
   <div class="text">
-    ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.<br><br>
+    ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you.<br><br>
 
-    jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝
+    jujur ya, walaupun kita belum lama, kamu bikin aku ngerasa nyaman. aneh sih, tapi kamu emang se-“itu” 😝
   </div>
 </div>
 
@@ -177,15 +170,14 @@ let index = 0;
 let musicStarted = false;
 
 function nextSlide() {
-
   index++;
 
   if (index < slides.length) {
-
     slides.forEach(s => s.classList.remove("active"));
     slides[index].classList.add("active");
 
-    if (index === 1 && !musicStarted) {
+    // start music once user interact
+    if (!musicStarted) {
       document.getElementById("music").play();
       musicStarted = true;
     }
