@@ -6,111 +6,59 @@
 <title>For My Love 💖</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; }
 
 body {
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
   background: radial-gradient(circle at 20% 30%, #2b0a4f, #05010f, #000);
 }
 
-/* ⭐ STAR LAYERS */
-.stars, .stars2, .stars3 {
-  position: fixed;
-  width: 100%;
-  height: 100%;
+/* stars */
+.stars,.stars2,.stars3{position:fixed;width:100%;height:100%}
+.stars::after,.stars2::after,.stars3::after{content:"";position:absolute;background:white;border-radius:50%}
+.stars::after{width:2px;height:2px;box-shadow:10vw 20vh #fff,30vw 40vh #fff,50vw 10vh #fff,70vw 80vh #fff,90vw 30vh #fff}
+.stars2::after{width:1.5px;height:1.5px;box-shadow:15vw 25vh #c9c9ff,35vw 65vh #c9c9ff,55vw 15vh #c9c9ff}
+.stars3::after{width:1px;height:1px;box-shadow:5vw 15vh #a78bfa,25vw 35vh #a78bfa,65vw 75vh #a78bfa}
+
+@keyframes moveStars{
+  from{transform:translateY(0)}
+  to{transform:translateY(-200vh)}
 }
 
-.stars::after,
-.stars2::after,
-.stars3::after {
-  content: "";
-  position: absolute;
-  background: white;
-  border-radius: 50%;
+/* slide */
+.slide{
+  position:absolute;
+  width:90%;
+  max-width:700px;
+  padding:30px;
+  opacity:0;
+  transition:1s;
+  z-index:2;
+}
+.slide.active{opacity:1}
+
+.text{
+  font-size:18px;
+  line-height:1.9;
+  text-align:justify;
+  white-space:pre-wrap;
 }
 
-.stars::after {
-  width: 2px;
-  height: 2px;
-  box-shadow: 10vw 20vh #fff, 30vw 40vh #fff, 50vw 10vh #fff,
-              70vw 80vh #fff, 90vw 30vh #fff, 20vw 70vh #fff;
-  animation: moveStars 60s linear infinite;
-  opacity: 0.8;
-}
+.opening{font-size:28px;text-align:center}
+.ending{text-align:center;font-size:22px}
 
-.stars2::after {
-  width: 1.5px;
-  height: 1.5px;
-  box-shadow: 15vw 25vh #c9c9ff, 35vw 65vh #c9c9ff, 55vw 15vh #c9c9ff,
-              75vw 85vh #c9c9ff, 25vw 75vh #c9c9ff;
-  animation: moveStars 90s linear infinite;
-  opacity: 0.5;
+/* cursor typing */
+.cursor::after{
+  content:"|";
+  animation:blink 0.8s infinite;
 }
-
-.stars3::after {
-  width: 1px;
-  height: 1px;
-  box-shadow: 5vw 15vh #a78bfa, 25vw 35vh #a78bfa,
-              65vw 75vh #a78bfa, 85vw 25vh #a78bfa;
-  animation: moveStars 120s linear infinite;
-  opacity: 0.4;
-}
-
-@keyframes moveStars {
-  from { transform: translateY(0); }
-  to { transform: translateY(-200vh); }
-}
-
-/* SLIDES */
-.slide {
-  position: absolute;
-  width: 90%;
-  max-width: 650px;
-  padding: 30px;
-  opacity: 0;
-  transition: 1s;
-  z-index: 2;
-}
-
-.slide.active {
-  opacity: 1;
-}
-
-/* TEXT */
-.text {
-  font-size: 18px;
-  line-height: 1.9;
-  text-align: justify;
-}
-
-.opening {
-  font-size: 28px;
-  text-align: center;
-}
-
-.fotoSlide {
-  margin-top: 25px;
-  text-align: center;
-}
-
-.fotoSlide img {
-  width: 140px;
-  border-radius: 12px;
-}
-
-.ending {
-  text-align: center;
-  font-size: 24px;
+@keyframes blink{
+  50%{opacity:0}
 }
 </style>
 </head>
@@ -121,89 +69,102 @@ body {
 <div class="stars2"></div>
 <div class="stars3"></div>
 
-<!-- SLIDE 1 -->
-<div class="slide active">
-  <div class="opening">
-    happy birthday sayang 🤍
-  </div>
-</div>
+<!-- SLIDES -->
+<div class="slide active"><div class="opening">tap anywhere sayang 🤍</div></div>
 
-<!-- SLIDE 2 -->
-<div class="slide">
-  <div class="text">
-    ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.<br><br>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
+<div class="slide"><div class="text"></div></div>
 
-    jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝
-  </div>
-</div>
+<div class="slide"><div class="ending"></div></div>
 
-<!-- SLIDE 3 -->
-<div class="slide">
-  <div class="text">
-    i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3
-  </div>
-</div>
-
-<!-- SLIDE 4 -->
-<div class="slide">
-  <div class="text">
-    buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee
-  </div>
-</div>
-
-<!-- SLIDE 5 -->
-<div class="slide">
-  <div class="text">
-    and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3<br><br>
-    and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤
-  </div>
-</div>
-
-<!-- SLIDE 6 -->
-<div class="slide">
-  <div class="text">
-    kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should<br><br>
-    thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
-  </div>
-</div>
-
-<!-- SLIDE 7 -->
-<div class="slide">
-  <div class="text">
-    i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3<br><br>
-    once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍
-  </div>
-</div>
-
-<!-- SLIDE 8 - Ending -->
-<div class="slide">
-  <div class="ending">
-    Thanks for watching sayang 💖<br>
-    I’m always here to support u no matter what cz I’m ur biggest fan !!!!<br>
-    happy birthday yaa sayang 🤍
-  </div>
-</div>
-
-<!-- AUDIO -->
 <audio id="music" loop>
-  <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3" type="audio/mpeg">
+  <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3">
 </audio>
 
 <script>
+const texts = [
+
+`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.`,
+
+`jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
+
+`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3`,
+
+`buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
+
+`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3`,
+
+`and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤`,
+
+`kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
+
+`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏`,
+
+`i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3`
+];
+
+const finalText = `
+once again, happy birthday sayang 🤍
+i’m so proud of you for everything you’ve done,
+and i’ll always support you, no matter what 💖
+
+Thanks for watching sayang 😤
+I’m always here to support u no matter what cz I’m ur biggest fan !!!!
+
+happy birthday yaa sayang 🤍
+`;
+
 let slides = document.querySelectorAll(".slide");
 let index = 0;
 let musicStarted = false;
 
-function nextSlide() {
-  index++;
-  if (index < slides.length) {
-    slides.forEach(s => s.classList.remove("active"));
-    slides[index].classList.add("active");
+function typeText(el, text, speed=20, cb){
+  let i = 0;
+  el.classList.add("cursor");
+  el.innerHTML = "";
 
-    if (!musicStarted) {
-      document.getElementById("music").play();
-      musicStarted = true;
+  function typing(){
+    if(i < text.length){
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    } else {
+      el.classList.remove("cursor");
+      if(cb) cb();
     }
+  }
+  typing();
+}
+
+function showSlide(i){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[i].classList.add("active");
+
+  if(i > 0 && i <= texts.length){
+    typeText(slides[i].querySelector(".text"), texts[i-1]);
+  }
+
+  if(i === slides.length-1){
+    typeText(slides[i].querySelector(".ending"), finalText);
+  }
+
+  if(!musicStarted){
+    document.getElementById("music").play();
+    musicStarted = true;
+  }
+}
+
+function nextSlide(){
+  if(index < slides.length-1){
+    index++;
+    showSlide(index);
   }
 }
 </script>
