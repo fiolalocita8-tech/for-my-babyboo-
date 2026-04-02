@@ -33,6 +33,11 @@ body {
   pointer-events: none;
 }
 
+@keyframes moveStars {
+  from {background-position: 0 0;}
+  to {background-position: 1000px 1000px;}
+}
+
 /* CARD */
 .card {
   position: relative;
@@ -45,9 +50,6 @@ body {
   height: 420px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
 }
 
 /* TEXT */
@@ -56,55 +58,18 @@ body {
   line-height: 1.6;
   overflow-y: auto;
   flex-grow: 1;
+  text-align: center;
 }
 
+/* PARAGRAF */
 #text p {
   margin-bottom: 10px;
-}
-
-/* FADE */
-.fade {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn 0.8s ease;
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* BUTTON WRAPPER */
-.buttons {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-/* BUTTON */
-button {
-  width: 85%;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  background: #ff4da6;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: #ff1a8c;
-}
-
-/* NO BUTTON */
-.no {
-  position: absolute;
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 /* ENDING */
@@ -143,27 +108,15 @@ button:hover {
   from {transform: translateY(-100px);}
   to {transform: translateY(100vh);}
 }
-
-/* STARS ANIM */
-@keyframes moveStars {
-  from {background-position: 0 0;}
-  to {background-position: 1000px 1000px;}
-}
 </style>
 </head>
 
-<body>
+<body onclick="nextText()">
 
 <div class="stars"></div>
 
 <div class="card">
   <div id="text">klik aku 🤍</div>
-
-  <div class="buttons">
-    <button onclick="nextText()">lanjut 💖</button>
-    <button onclick="love()">aku sayang kamu 😳</button>
-    <button class="no" onmouseover="moveBtn(this)">gamau 😝</button>
-  </div>
 </div>
 
 <div class="ending" id="ending">
@@ -197,6 +150,7 @@ let texts = [
 let i = 0;
 
 function nextText() {
+
   if (!started) {
     document.getElementById("music").play();
     started = true;
@@ -205,7 +159,6 @@ function nextText() {
 
   if (i < texts.length) {
     let p = document.createElement("p");
-    p.classList.add("fade");
     p.innerText = texts[i];
     document.getElementById("text").appendChild(p);
     i++;
@@ -214,15 +167,7 @@ function nextText() {
   }
 }
 
-function love() {
-  alert("cieee 😏");
-}
-
-function moveBtn(btn) {
-  btn.style.top = Math.random()*250 + "px";
-  btn.style.left = Math.random()*250 + "px";
-}
-
+/* HATI */
 setInterval(() => {
   let heart = document.createElement("div");
   heart.className = "heart";
