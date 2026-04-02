@@ -3,203 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>for babyboo 🤍</title>
+<title>for babyboo 👻</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  font-family:'Segoe UI',sans-serif;
-  background: radial-gradient(circle at top, #140028, #000);
+  font-family:"Times New Roman", serif;
+  background: radial-gradient(circle at top,#1a0033,#000);
   color:white;
+  height:100vh;
   overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* 🌌 stars */
-.stars, .stars2{
-  position:absolute;
+/* 🌌 canvas galaxy */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+/* container */
+.container{
   width:100%;
-  height:100%;
-  background:transparent;
-}
-
-.stars::after{
-  content:"";
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  box-shadow:
-  50px 80px,120px 200px,300px 150px,500px 300px,700px 100px,900px 400px;
-  animation: twinkle 2s infinite alternate;
-}
-
-.stars2::after{
-  content:"";
-  position:absolute;
-  width:1px;
-  height:1px;
-  background:#ccc;
-  box-shadow:
-  200px 100px,400px 250px,600px 350px,800px 150px;
-  animation: twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle{
-  from{opacity:0.2;}
-  to{opacity:1;}
-}
-
-/* shooting star */
-.shoot{
-  position:absolute;
-  width:2px;
-  height:80px;
-  background:linear-gradient(white,transparent);
-  top:-100px;
-  left:70%;
-  animation:shoot 5s infinite;
-}
-
-@keyframes shoot{
-  0%{transform:translateY(0) translateX(0); opacity:1;}
-  100%{transform:translateY(800px) translateX(-300px); opacity:0;}
+  max-width:400px;
+  text-align:center;
 }
 
 /* slide */
 .slide{
   position:absolute;
   width:100%;
-  height:100%;
-  display:flex;
   opacity:0;
-  pointer-events:none;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  padding:20px;
-  transition:1s;
-  backdrop-filter: blur(4px);
+  transition:0.6s;
 }
 
-.active{
-  opacity:1;
-  pointer-events:all;
+.slide.active{ opacity:1; }
+
+/* image */
+img{
+  width:160px;
+  border-radius:20px;
+  margin-bottom:20px;
+  box-shadow:0 0 25px rgba(255,255,255,0.2);
 }
 
 /* text */
 h1{
-  font-size:2.7em;
-  background: linear-gradient(45deg,#ff99ff,#66ccff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px rgba(255,255,255,0.3);
+  font-size:2.2em;
+  margin-bottom:10px;
 }
 
 p{
-  max-width:650px;
-  margin-top:10px;
-  line-height:1.6;
+  color:#ddd;
 }
 
 /* button */
 button{
-  margin-top:20px;
+  margin-top:15px;
   padding:10px 20px;
-  border-radius:20px;
   border:none;
+  border-radius:25px;
   background: linear-gradient(45deg,#ff66cc,#66ccff);
-  color:black;
+  color:white;
   cursor:pointer;
 }
 
-/* image */
-img{
-  width:150px;
-  border-radius:20px;
-  margin-bottom:15px;
-  box-shadow:0 0 30px rgba(255,255,255,0.4);
-}
-
-/* fade text */
-.fadeText{
-  opacity:0;
-  transform:translateY(15px);
-  transition:0.8s;
-}
-
-.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* 💖 floating hearts */
-.heart{
-  position:absolute;
-  color:pink;
-  font-size:20px;
-  animation:float 3s linear forwards;
-}
-
-@keyframes float{
-  to{
-    transform:translateY(-200px);
-    opacity:0;
-  }
-}
-
 /* popup */
-.popup{
+.overlay{
   position:fixed;
-  bottom:30px;
-  background:rgba(255,255,255,0.1);
-  padding:10px 20px;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:0.4s;
+}
+
+.overlay.show{
+  opacity:1;
+  pointer-events:all;
+}
+
+.popup{
+  background:rgba(20,20,40,0.95);
+  padding:20px;
   border-radius:20px;
-  display:none;
+  max-width:90%;
+  max-height:70%;
+  overflow-y:auto;
+  text-align:left;
+  box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
+
+.popup p{
+  margin-bottom:12px;
+  line-height:1.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-<div class="stars2"></div>
-<div class="shoot"></div>
+<canvas id="stars"></canvas>
+
+<div class="container">
 
 <!-- slide 1 -->
 <div class="slide active" id="s1">
-  <img src="dab94c89-fcb7-4d19-be69-4786f2028a39.jpg">
-  <h1>happy birthday babyboo ✨</h1>
-  <p>for Farhan Abud, someone special in this universe 🌌</p>
-  <button onclick="go(2)">tap yaa</button>
+  <img src="foto1.jpg">
+  <h1>happy birthday babyboo 💖</h1>
+  <p>for Farhan Abud ✨</p>
+  <button onclick="go(2)">tap</button>
 </div>
 
 <!-- slide 2 -->
 <div class="slide" id="s2">
-  <img src="IMG_9391.jpeg">
-  <h1>for you 💌</h1>
+  <img src="foto2.jpg">
+  <h1>for my abud </h1>
 
   <audio id="music">
-    <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3">
+    <source src="lagu.mp3">
   </audio>
 
-  <button onclick="playMusic()">play dulu 🎵</button>
-
-  <div id="textContainer"></div>
-
-  <button onclick="showNext()">buka pesan</button>
-  <button onclick="go(3)">lanjut</button>
+  <button onclick="playMusic()">play music 🎵</button>
+  <button onclick="openPopup()">buka pesan 💌</button>
+  <button onclick="go(3)">next</button>
 </div>
 
 <!-- slide 3 -->
 <div class="slide" id="s3">
-  <h1>thank you sayang <3-!!!</h1>
-  <p>makasih udah jadi bagian dari hidup aku 🤍</p>
-  <h2 style="margin-top:20px;">mwah 😘</h2>
+  <h1>thank you 🤍</h1>
+  <p>makasih udah jadi bagian dari hidup aku 50% 😉</p>
 </div>
 
-<div class="popup" id="popup">cie abud ditap HAHAHA </div>
+</div>
+
+<!-- popup -->
+<div class="overlay" id="overlay">
+  <div class="popup">
+    <p>happy birthday yaa sayang 🤍</p>
+    <p>ih today is your special day yaa 😖 bukan cuma karena kamu nambah umur...</p>
+    <p>jujur ya... kamu emang se-“itu”</p>
+    <p>please take care of yourself ya 🤍</p>
+    <button onclick="closePopup()">close</button>
+  </div>
+</div>
 
 <script>
 function go(n){
@@ -211,47 +169,48 @@ function playMusic(){
   document.getElementById('music').play();
 }
 
-/* 💌 long text kamu */
-let paragraphs = [
-`happy birthday yaa sayang 🤍`,
-`ih today is your special day yaa 😖 bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you.`,
-`jujur ya… kamu emang se-“itu”`,
-`please take care of yourself ya… aku peduli 🤍`,
-`dan jangan bandel ya 😤`
-];
-
-let index=0;
-
-function showNext(){
-  if(index < paragraphs.length){
-    let p=document.createElement("p");
-    p.classList.add("fadeText");
-    p.innerText=paragraphs[index];
-    document.getElementById("textContainer").appendChild(p);
-
-    setTimeout(()=>p.classList.add("show"),50);
-    index++;
-  }
+function openPopup(){
+  document.getElementById("overlay").classList.add("show");
 }
 
-/* 💖 heart effect */
-document.addEventListener("click", function(e){
-  let heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="💖";
-  heart.style.left=e.clientX+"px";
-  heart.style.top=e.clientY+"px";
-  document.body.appendChild(heart);
+function closePopup(){
+  document.getElementById("overlay").classList.remove("show");
+}
 
-  setTimeout(()=>heart.remove(),3000);
-});
+/* 🌌 BINTANG GERAK HALUS */
+let c=document.getElementById("stars");
+let ctx=c.getContext("2d");
 
-/* popup */
-document.body.addEventListener("click", ()=>{
-  let p=document.getElementById("popup");
-  p.style.display="block";
-  setTimeout(()=>p.style.display="none",2000);
-},{once:true});
+c.width=window.innerWidth;
+c.height=window.innerHeight;
+
+let stars=[];
+for(let i=0;i<120;i++){
+  stars.push({
+    x:Math.random()*c.width,
+    y:Math.random()*c.height,
+    r:Math.random()*1.2,
+    d:Math.random()*0.3
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.fillStyle="white";
+
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+
+    s.y+=s.d;
+    if(s.y>c.height) s.y=0;
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
 </script>
 
 </body>
