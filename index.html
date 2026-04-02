@@ -15,61 +15,88 @@
 
 body {
   height: 100vh;
+  background: black;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top, #0a0f2c, #000);
   overflow: hidden;
-  color: white;
 }
 
-/* STARS */
-.stars {
+/* STAR FALL */
+.star {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  animation: moveStars 80s linear infinite;
-  pointer-events: none;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  animation: fall linear infinite;
+  opacity: 0.7;
 }
 
-@keyframes moveStars {
-  from {background-position: 0 0;}
-  to {background-position: 1000px 1000px;}
+@keyframes fall {
+  from {
+    transform: translateY(-100px) translateX(0);
+  }
+  to {
+    transform: translateY(100vh) translateX(200px);
+  }
 }
 
-/* CARD */
-.card {
+/* BOX */
+.box {
   position: relative;
   z-index: 2;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  padding: 25px;
+  text-align: center;
+  max-width: 320px;
+}
+
+/* MUSIC BUTTON */
+#playBtn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 12px;
+  padding: 6px 12px;
   border-radius: 20px;
-  width: 320px;
-  height: 420px;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 15px;
+  opacity: 0.7;
+}
+
+#playBtn:hover {
+  opacity: 1;
 }
 
 /* TEXT */
 #text {
-  font-size: 14px;
-  line-height: 1.6;
-  overflow-y: auto;
-  flex-grow: 1;
-  text-align: center;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 120px;
 }
 
-/* PARAGRAF */
 #text p {
   margin-bottom: 10px;
-  animation: fadeIn 0.8s ease;
+}
+
+/* FADE */
+.fade {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
+  to { opacity: 1; }
+}
+
+/* TAP */
+.tap {
+  opacity: 0.6;
+  font-size: 12px;
+  margin-top: 10px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  50% {opacity: 1;}
 }
 
 /* ENDING */
@@ -79,15 +106,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top, #050816, #000);
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   opacity: 0;
-  pointer-events: none;
   transition: 2s;
-  z-index: 10;
 }
 
 .ending.show {
@@ -97,28 +122,22 @@ body {
 .ending h1 {
   font-size: 22px;
 }
-
-/* HEART */
-.heart {
-  position: fixed;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  from {transform: translateY(-100px);}
-  to {transform: translateY(100vh);}
-}
 </style>
 </head>
 
 <body onclick="nextText()">
 
-<div class="stars"></div>
+<div class="box">
 
-<div class="card">
-  <div id="text">klik aku 🤍</div>
+  <!-- BUTTON MUSIK ATAS -->
+  <button onclick="playMusic()" id="playBtn">🎶 play music</button>
+
+  <div id="text">tap pelan yaa 🤍</div>
+  <div class="tap">tap anywhere...</div>
+
 </div>
 
+<!-- ENDING -->
 <div class="ending" id="ending">
   <h1>
     i am so proud of you sayang 🫶🏻<br><br>
@@ -126,38 +145,46 @@ body {
   </h1>
 </div>
 
+<!-- AUDIO -->
 <audio id="music" loop>
   <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let started = false;
 let texts = [
 `happy birthday yaa sayang 🤍`,
-`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you.`,
-`jujur ya, walaupun kita belum lama, but you already made me feel something different.`,
-`i just want you to be happy, sesimpel itu.`,
-`buttt… boleh ya aku sedikit cerewet 😤`,
-`and also… please try to reduce smoking`,
-`and one more thing… don’t skip meals ya`,
-`kalau aku lagi ngingetin kamu, jangan bandel ya`,
-`thank you for being you`,
-`i hope on your birthday, you feel loved`,
-`once again, happy birthday sayang 🤍`
+
+`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.`,
+
+`jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
+
+`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3`,
+
+`buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
+
+`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3`,
+
+`and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤`,
+
+`kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
+
+`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏`,
+
+`i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3`,
+
+`once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍`
 ];
 
 let i = 0;
 
 function nextText() {
-
-  if (!started) {
-    document.getElementById("music").play();
-    started = true;
+  if (i === 0) {
     document.getElementById("text").innerHTML = "";
   }
 
   if (i < texts.length) {
     let p = document.createElement("p");
+    p.classList.add("fade");
     p.innerText = texts[i];
     document.getElementById("text").appendChild(p);
     i++;
@@ -166,16 +193,21 @@ function nextText() {
   }
 }
 
-/* HATI */
+function playMusic() {
+  let music = document.getElementById("music");
+  music.play();
+  document.getElementById("playBtn").innerText = "playing 🎶";
+}
+
+/* STAR */
 setInterval(() => {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random()*100+"vw";
-  heart.style.animationDuration = "5s";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),5000);
-},500);
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+  document.body.appendChild(star);
+  setTimeout(() => star.remove(), 2000);
+}, 100);
 </script>
 
 </body>
