@@ -10,7 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 body {
@@ -23,7 +23,7 @@ body {
   overflow: hidden;
 }
 
-/* STAR FALL */
+/* STAR */
 .star {
   position: fixed;
   width: 2px;
@@ -34,12 +34,8 @@ body {
 }
 
 @keyframes fall {
-  from {
-    transform: translateY(-100px) translateX(0);
-  }
-  to {
-    transform: translateY(100vh) translateX(200px);
-  }
+  from {transform: translateY(-100px);}
+  to {transform: translateY(100vh) translateX(200px);}
 }
 
 /* BOX */
@@ -62,10 +58,6 @@ body {
   opacity: 0.7;
 }
 
-#playBtn:hover {
-  opacity: 1;
-}
-
 /* TEXT */
 #text {
   font-size: 15px;
@@ -73,30 +65,96 @@ body {
   min-height: 120px;
 }
 
-#text p {
-  margin-bottom: 10px;
-}
-
-/* FADE */
 .fade {
   opacity: 0;
   animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+  to {opacity: 1;}
 }
 
-/* TAP */
 .tap {
   opacity: 0.6;
   font-size: 12px;
   margin-top: 10px;
-  animation: blink 1.5s infinite;
 }
 
-@keyframes blink {
-  50% {opacity: 1;}
+/* LONG PAGE */
+.longpage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: 1.5s;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+
+.longpage.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.longcontent {
+  max-width: 600px;
+  margin: auto;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: 0.5px;
+}
+
+.longcontent p {
+  margin-bottom: 22px;
+}
+
+/* FINAL SCENE */
+.finalscene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 2s;
+  z-index: 9;
+}
+
+.finalscene.show {
+  opacity: 1;
+}
+
+.finalimg {
+  width: 150px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: 2s;
+}
+
+.finalscene.show .finalimg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.finalscene p {
+  font-size: 17px;
+  opacity: 0;
+  transition: 2s;
+}
+
+.finalscene.show p {
+  opacity: 1;
 }
 
 /* ENDING */
@@ -118,23 +176,48 @@ body {
 .ending.show {
   opacity: 1;
 }
-
-.ending h1 {
-  font-size: 22px;
-}
 </style>
 </head>
 
 <body onclick="nextText()">
 
 <div class="box">
-
-  <!-- BUTTON MUSIK ATAS -->
   <button onclick="playMusic()" id="playBtn">🎶 play music</button>
-
   <div id="text">tap pelan yaa 🤍</div>
   <div class="tap">tap anywhere...</div>
+</div>
 
+<!-- LONG PAGE -->
+<div class="longpage" id="longpage">
+  <div class="longcontent">
+    <p>happy birthday yaa sayang 🤍</p>
+
+    <p>ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.</p>
+
+    <p>jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝</p>
+
+    <p>i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud &lt;3</p>
+
+    <p>buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee</p>
+
+    <p>and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat &lt;3</p>
+
+    <p>and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤</p>
+
+    <p>kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should</p>
+
+    <p>thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏</p>
+
+    <p>i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me &lt;3</p>
+
+    <p>once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍</p>
+  </div>
+</div>
+
+<!-- FOTO -->
+<div class="finalscene" id="finalscene">
+  <img src="kamu.jpg" class="finalimg">
+  <p>jangan lupain aku ya sayang 🤍</p>
 </div>
 
 <!-- ENDING -->
@@ -145,7 +228,6 @@ body {
   </h1>
 </div>
 
-<!-- AUDIO -->
 <audio id="music" loop>
   <source src="A Sorrowful Reunion - Reality Club (Official Lyric Video) - (320 Kbps).mp3" type="audio/mpeg">
 </audio>
@@ -153,34 +235,22 @@ body {
 <script>
 let texts = [
 `happy birthday yaa sayang 🤍`,
-
-`ih today is your special day yaa, bukan cuma karena kamu nambah umur, but because the world gets the current version of you… and i’m lucky enough to know you. i am so lucky to meet you.`,
-
-`jujur ya, walaupun kita belum lama, but you already made me feel something different. you make me feel comfortable, and i just enjoy every moment when i’m around you… aneh sih, but yeah, kamu emang se-“itu” 😝`,
-
-`i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud <3`,
-
-`buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee`,
-
-`and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat <3`,
-
-`and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤`,
-
-`kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should`,
-
-`thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏`,
-
-`i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me <3`,
-
-`once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍`
+`ih today is your special day yaa, bukan cuma karena kamu nambah umur...`,
+`jujur ya, walaupun kita belum lama...`,
+`i just want you to be happy...`,
+`buttt… boleh ya aku sedikit cerewet 😤`,
+`and also… please try to reduce smoking`,
+`and one more thing… don’t skip meals ya`,
+`kalau aku lagi ngingetin kamu...`,
+`thank you for being you`,
+`i hope on your birthday...`,
+`once again, happy birthday sayang 🤍`
 ];
 
 let i = 0;
 
 function nextText() {
-  if (i === 0) {
-    document.getElementById("text").innerHTML = "";
-  }
+  if (i === 0) document.getElementById("text").innerHTML = "";
 
   if (i < texts.length) {
     let p = document.createElement("p");
@@ -189,7 +259,15 @@ function nextText() {
     document.getElementById("text").appendChild(p);
     i++;
   } else {
-    document.getElementById("ending").classList.add("show");
+    document.getElementById("longpage").classList.add("show");
+
+    setTimeout(() => {
+      document.getElementById("finalscene").classList.add("show");
+    }, 8000);
+
+    setTimeout(() => {
+      document.getElementById("ending").classList.add("show");
+    }, 14000);
   }
 }
 
@@ -199,7 +277,6 @@ function playMusic() {
   document.getElementById("playBtn").innerText = "playing 🎶";
 }
 
-/* STAR */
 setInterval(() => {
   let star = document.createElement("div");
   star.className = "star";
