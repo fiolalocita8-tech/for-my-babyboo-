@@ -23,34 +23,68 @@ body {
   overflow: hidden;
 }
 
-/* overlay biar kebaca */
-.stars {
+/* 🌌 GALAXY STARS */
+.stars, .stars2, .stars3 {
   position: fixed;
   width: 100%;
   height: 100%;
   background: transparent;
 }
 
-.stars::before, .stars::after {
+/* layer 1 */
+.stars::after {
   content: "";
   position: absolute;
   width: 2px;
   height: 2px;
   background: white;
   box-shadow:
-    20vw 10vh white,
-    50vw 30vh white,
-    80vw 70vh white,
-    10vw 80vh white,
-    70vw 20vh white,
-    30vw 60vh white,
-    90vw 40vh white,
-    60vw 90vh white;
-  opacity: 0.6;
+    10vw 20vh white, 30vw 40vh white, 50vw 10vh white,
+    70vw 80vh white, 90vw 30vh white, 20vw 70vh white,
+    40vw 90vh white, 60vw 50vh white, 80vw 60vh white;
+  animation: moveStars 60s linear infinite;
+  opacity: 0.7;
 }
 
-  <div class="stars"></div>
-  
+/* layer 2 */
+.stars2::after {
+  content: "";
+  position: absolute;
+  width: 1.5px;
+  height: 1.5px;
+  background: #aaa;
+  box-shadow:
+    15vw 25vh #aaa, 35vw 65vh #aaa, 55vw 15vh #aaa,
+    75vw 85vh #aaa, 95vw 45vh #aaa, 25vw 75vh #aaa,
+    45vw 95vh #aaa, 65vw 55vh #aaa;
+  animation: moveStars 100s linear infinite;
+  opacity: 0.5;
+}
+
+/* layer 3 */
+.stars3::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: #777;
+  box-shadow:
+    5vw 15vh #777, 25vw 35vh #777, 45vw 5vh #777,
+    65vw 75vh #777, 85vw 25vh #777, 15vw 65vh #777;
+  animation: moveStars 140s linear infinite;
+  opacity: 0.4;
+}
+
+/* animasi gerak pelan */
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200vh);
+  }
+}
+
 /* slide */
 .slide {
   position: absolute;
@@ -100,6 +134,11 @@ body {
 
 <body onclick="nextSlide()">
 
+<!-- 🌌 BACKGROUND -->
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
 <!-- SLIDE 1 -->
 <div class="slide active">
   <div class="opening">
@@ -119,48 +158,11 @@ body {
 <!-- SLIDE 3 -->
 <div class="slide">
   <div class="text">
-    i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true, and i hope you always find a reason to smile, even on your hardest days yaa abud &lt;3<br><br>
+    i just want you to be happy, sesimpel itu. i hope everything you’re chasing slowly comes true...<br><br>
 
-    buttt… boleh ya aku sedikit cerewet 😤 when you’re upset, don’t be too harsh ya sayang. jangan langsung marah-marah, nono pundungan 😠 tapi jujur kamu lucu sih kalau gitu, makanya suka aku jailin wleee
-    
     <div class="fotoSlide">
       <img src="IMG_9402.png">
     </div>
-  </div>
-</div>
-
-<!-- SLIDE 4 -->
-<div class="slide">
-  <div class="text">
-    and also… please try to reduce smoking and coffee ya ganteng. i’m not trying to control you, aku cuma mau kamu tetep ada disini lebih lama dan sehat &lt;3<br><br>
-
-    and one more thing… don’t skip meals ya, makan nasi yang bener. take care of your sleep schedule, jangan kebanyakan begadang, and please drink more water!!!! don’t wait until someone reminds you 😤
-  </div>
-</div>
-
-<!-- SLIDE 5 -->
-<div class="slide">
-  <div class="text">
-    kalau aku lagi ngingetin kamu, don’t be stubborn ya sayang… just listen a little, anggap aja itu karena aku care about you more than i should<br><br>
-
-    thank you for being you, with all your imperfections. funny thing is… i actually like all of it (and no, i won’t say this again, gengsi). you’re actually the lucky one 😏
-  </div>
-</div>
-
-<!-- SLIDE 6 -->
-<div class="slide">
-  <div class="text">
-    i hope on your birthday, you feel loved, appreciated, and reminded that you matter… at least to me &lt;3<br><br>
-
-    once again, happy birthday sayang. i’m so proud of you for everything you’ve done, and i’ll always support you, no matter what 🤍
-  </div>
-</div>
-
-<!-- ENDING -->
-<div class="slide">
-  <div class="ending">
-    i am so proud of you sayang 🫶🏻<br><br>
-    thank you for staying… even when things weren’t easy 🤍
   </div>
 </div>
 
@@ -183,7 +185,6 @@ function nextSlide() {
     slides.forEach(s => s.classList.remove("active"));
     slides[index].classList.add("active");
 
-    // mulai musik di slide 2
     if (index === 1 && !musicStarted) {
       document.getElementById("music").play();
       musicStarted = true;
